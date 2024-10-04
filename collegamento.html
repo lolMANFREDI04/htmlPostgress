@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Anime</title>
+</head>
+<body>
+    <h1>Lista Anime</h1>
+    <ul id="anime-list"></ul>
+
+    <script>
+        fetch('http://localhost:3000/anime') // Assicurati che questa URL sia corretta
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const animeList = document.getElementById('anime-list');
+                data.forEach(anime => {
+                    const li = document.createElement('li');
+                    li.textContent = `${anime.titolo} - ${anime.numeroep} episodi`;
+                    animeList.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error fetching anime:', error));
+
+        function add(){
+            debugger
+            Titolo = document.getElementById("AnimeTitolo").value;
+
+            NumeroEp = document.getElementById("NumeroEp").value;
+
+            fetch('http://localhost:3000/AddAnime', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    titolo: Titolo,
+                    numeroEp: NumeroEp
+                })
+            })
+            .then(response => {response.json(); debugger})
+            .then(data => console.log('Anime aggiunto:', data))
+            .catch(error => console.error('Errore:', error));
+            
+        }
+    </script>
+
+    <br>
+
+    <input type="submit" onclick="add()">Add Anime</input>
+    <input id="AnimeTitolo" type="text" required>
+    <input id="NumeroEp" type="number" required>
+</body>
+</html>
