@@ -16,10 +16,6 @@ app.use(cors()); // Permette tutte le origini
 
 app.use(express.json());
 
-app.get('/', async (req, res) => {
-    console.log("lol");
-});
-
 app.get('/anime', async (req, res) => {
     try {
         const results = await client.query("SELECT id, titolo, numeroep FROM anime;");
