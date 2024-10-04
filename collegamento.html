@@ -10,7 +10,7 @@
     <ul id="anime-list"></ul>
 
     <script>
-        fetch('http://localhost:3000/anime') // Assicurati che questa URL sia corretta
+        fetch('https://htmlpostgress.onrender.com/anime') // Assicurati che questa URL sia corretta    //http://localhost:3000/anime
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
@@ -33,7 +33,7 @@
 
             NumeroEp = document.getElementById("NumeroEp").value;
 
-            fetch('http://localhost:3000/AddAnime', {
+            fetch('https://htmlpostgress.onrender.com/AddAnime', {   //http://localhost:3000/AddAnime
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
