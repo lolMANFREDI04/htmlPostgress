@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 const DATABASE_URL = "postgresql://carlo:IiiBUu31w-HYTDhFIQuz1g@sturdy-grivet-2194.jxf.gcp-europe-west1.cockroachlabs.cloud:26257/sburoList?sslmode=verify-full";
 
-const client = new Client(process.env.DATABASE_URL);
+const client = new Client(DATABASE_URL);  //process.env.DATABASE_URL
 
 (async () => {
     await client.connect();
